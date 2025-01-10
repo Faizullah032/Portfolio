@@ -6,6 +6,51 @@ menuToggle.addEventListener('click', () => {
 });
 
 
+
+
+
+
+const rainContainer = document.getElementById("rain-container");
+
+// Function to create raindrops
+function createRain() {
+  // Determine the number of raindrops based on screen size
+  const totalDrops = 80; // Adjust the number of drops as needed
+
+  for (let i = 0; i < totalDrops; i++) {
+    const rainDrop = document.createElement("div");
+    rainDrop.classList.add("rain-drop");
+
+    // Randomize position and animation delay
+    rainDrop.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+    rainDrop.style.animationDelay = `${Math.random() * 0.5}s`; // Random animation start time
+    rainDrop.style.animationDuration = `${2 + Math.random() * 1}s`; // Random animation speed
+
+    // Append to container
+    rainContainer.appendChild(rainDrop);
+  }
+}
+
+// Ensure rain adjusts to scrolling
+function updateRainHeight() {
+  const docHeight = document.body.scrollHeight; // Full page height
+  rainContainer.style.height = `${docHeight}px`; // Match container height to document height
+}
+
+// Initialize rain effect
+createRain();
+updateRainHeight();
+
+// Update on window resize or content change
+window.addEventListener("resize", updateRainHeight);
+window.addEventListener("scroll", updateRainHeight);
+
+
+
+
+
+
+
 // Select cursor elements
 const cursor = document.querySelector('.cursor');
 const cursorFollow = document.querySelector('.cursor-follow');
